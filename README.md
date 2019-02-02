@@ -8,8 +8,8 @@ Only depends on vanilla ROOT. CMAKE must be able to find ROOT using the find_pac
 
 ## Build 
 
-By default, builds the shared library, and installs it in ${CMAKE_INSTALL_PREFIX}/lib. BUILD_SHARED_LIBS can be turned off to build the static library instead. Headers are installed in ${CMAKE_INSTALL_PREFIX}/include
+By default, builds the shared library, and installs it in ${CMAKE_INSTALL_PREFIX}/lib. BUILD_SHARED_LIBS can be turned off to build the static library instead. Headers are installed in ${CMAKE_INSTALL_PREFIX}/include. 
 
 ## Build options
 
-You can specify which version of the StPicoEvent code to compile using the two CMake flags PICO_SL18H and PICO_SL18B. If none are specified, SL18B is built by default.
+You can specify which version of the StPicoEvent code to compile using the two CMake flags PICO_SL18H and PICO_SL18B. If none are specified, SL18B is built by default. Header installation can be turned off by setting PICO_INSTALL_HEADERS=Off
