@@ -16,6 +16,7 @@
 #include <math.h>
 #include <utility>
 #include <algorithm>
+#include <cmath>
 
 // ROOT headers
 #include "TVector3.h"
@@ -218,10 +219,10 @@ inline Double_t StPicoHelix::pathLength(Double_t X, Double_t Y) const { return f
 inline Int_t StPicoHelix::bad(Double_t WorldSize) const {
 
   Int_t ierr;
-  if ( !::finite(mDipAngle) ) {
+  if ( !std::isfinite(mDipAngle) ) {
     return 11;
   }
-  if ( !::finite(mCurvature) ) {
+  if ( !std::isfinite(mCurvature) ) {
     return 12;
   }
   
@@ -240,7 +241,7 @@ inline Int_t StPicoHelix::bad(Double_t WorldSize) const {
     default: tmpVal = NAN;
     };
     
-    if ( !::finite( tmpVal ) ) {
+    if ( !std::isfinite( tmpVal ) ) {
       ierr = 10 + iIter;
     }
     if ( ::fabs( tmpVal ) > WorldSize ) {
