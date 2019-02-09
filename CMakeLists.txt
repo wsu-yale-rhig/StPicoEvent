@@ -33,7 +33,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -fPIC")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-narrowing")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11")
 
-# add -D_VANILLA_ROOT_ to CMAKE_CXX_FLAGS. Necessary to turn off all StRoot 
+# add -D_VANILLA_ROOT_ to CMAKE_CXX_FLAGS. Necessary to turn off all StRoot
 # dependencies
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_VANILLA_ROOT_")
 
@@ -45,13 +45,13 @@ set(PICO_LINKDEF)
 
 # finally, add the source tree - dependent on library version
 if (PICO_SL18H)
-	add_subdirectory(SL18H/StPicoEvent)
-	set(PICO_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/SL18H)
-	include_directories(${PICO_INCLUDE})	
+	add_subdirectory(SL18h/StPicoEvent)
+	set(PICO_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/SL18h)
+	include_directories(${PICO_INCLUDE})
 elseif (PICO_SL18B)
-	add_subdirectory(SL18B/StPicoEvent)
-	set(PICO_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/SL18B)
-	include_directories(${PICO_INCLUDE})	
+	add_subdirectory(SL18b/StPicoEvent)
+	set(PICO_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/SL18b)
+	include_directories(${PICO_INCLUDE})
 else(PICO_SL18H)
 	message(FATAL "No library choice specified for StPicoDst - either BUILD_SL18H or SL18B")
 endif(PICO_SL18H)
