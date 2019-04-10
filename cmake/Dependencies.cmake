@@ -1,4 +1,4 @@
-# currently, StPicoDst only depends on ROOT
+# currently, StPicoEvent only depends on ROOT
 
 set(PICO_DEPENDENCY_LIBS "")
 

@@ -1,6 +1,6 @@
-# STAR StPicoDst library
+# STAR StPicoEvent library
 
-Implementation of the STAR experiment's StPicoDst and associated utility classes in a convenient CMake wrapper, with options for different STAR Library versions of the code to be used.
+Implementation of the STAR experiment's StPicoEvent and associated utility classes in a convenient CMake wrapper, with options for different STAR Library versions of the code to be used.
 
 ## Dependencies
 

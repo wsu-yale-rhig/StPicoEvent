@@ -3,13 +3,13 @@ cmake_policy(SET CMP0042 NEW)
 cmake_policy(SET CMP0048 NEW)
 
 # project title
-project(StPicoDst VERSION 0.1.0)
+project(StPicoEvent VERSION 0.1.0)
 
 set(CMAKE_BUILD_TYPE RELEASE)
 
 # options
 option(BUILD_SHARED_LIBS "Build shared libs" ON)
-option(PICO_SL18H "Build the SL18h version of StPicoDst" ON)
+option(PICO_SL18H "Build the SL18h version of StPicoEvent" ON)
 option(PICO_INSTALL_HEADERS "Install StPicoEvent headers" ON)
 
 # compiler & system checks
@@ -49,21 +49,21 @@ else(PICO_SL18H)
 endif(PICO_SL18H)
 
 # use ROOT to generate the dictionary file
-set(PICO_DICT_NAME StPicoDst_dict)
-set(PICO_DICT_TARGET StPicoDst_dict.cxx)
+set(PICO_DICT_NAME StPicoEvent_dict)
+set(PICO_DICT_TARGET StPicoEvent_dict.cxx)
 ROOT_GENERATE_DICTIONARY(${PICO_DICT_NAME} ${PICO_HDRS} LINKDEF ${PICO_LINKDEF}
                          OPTIONS "-D_VANILLA_ROOT_")
 
 # build target library
-add_library(StPicoDst ${PICO_SRCS} ${PICO_DICT_TARGET})
-target_link_libraries(StPicoDst PRIVATE ${PICO_DEPENDENCY_LIBS})
-target_include_directories(StPicoDst INTERFACE $<INSTALL_INTERFACE:include>)
-target_compile_options(StPicoDst INTERFACE "--std=c++11")
-install(TARGETS StPicoDst EXPORT StPicoDst DESTINATION lib)
-install(EXPORT StPicoDst NAMESPACE pico_ DESTINATION lib/StPicoDst)
+add_library(StPicoEvent ${PICO_SRCS} ${PICO_DICT_TARGET})
+target_link_libraries(StPicoEvent PRIVATE ${PICO_DEPENDENCY_LIBS})
+target_include_directories(StPicoEvent INTERFACE $<INSTALL_INTERFACE:include>)
+target_compile_options(StPicoEvent INTERFACE "--std=c++11")
+install(TARGETS StPicoEvent EXPORT StPicoEvent DESTINATION lib)
+install(EXPORT StPicoEvent NAMESPACE pico_ DESTINATION lib/StPicoEvent)
 link_directories(${CMAKE_INSTALL_PREFIX}/lib)
 
-set (PICO_LIBRARIES StPicoDst)
+set (PICO_LIBRARIES StPicoEvent)
 
 # add an uninstall option, since cmake does not provide one by default
 if(NOT TARGET uninstall)

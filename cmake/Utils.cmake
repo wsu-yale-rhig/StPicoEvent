@@ -2,7 +2,7 @@
 # script attempts to avoid the problem, we always put anaconda include paths
 # after system include paths
 
-function(stpicodst_include_directories)
+function(stpicoevent_include_directories)
   foreach(dir IN LISTS ARGN)
     if(${dir} MATCHES "/anaconda")
       include_directories(AFTER SYSTEM ${dir})
