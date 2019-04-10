@@ -9,12 +9,8 @@ set(CMAKE_BUILD_TYPE RELEASE)
 
 # options
 option(BUILD_SHARED_LIBS "Build shared libs" ON)
-option(PICO_SL18B "Build the SL18b version of StPicoDst" ON)
-option(PICO_SL18H "Build the SL18h version of StPicoDst" OFF)
+option(PICO_SL18H "Build the SL18h version of StPicoDst" ON)
 option(PICO_INSTALL_HEADERS "Install StPicoEvent headers" ON)
-if(PICO_SL18H)
-	set(PICO_SL18B OFF)
-endif(PICO_SL18H)
 
 # compiler & system checks
 include(cmake/SysCheck.cmake)
@@ -48,12 +44,8 @@ if (PICO_SL18H)
 	add_subdirectory(SL18h/StPicoEvent)
 	set(PICO_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/SL18h)
 	include_directories(${PICO_INCLUDE})
-elseif (PICO_SL18B)
-	add_subdirectory(SL18b/StPicoEvent)
-	set(PICO_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/SL18b)
-	include_directories(${PICO_INCLUDE})
 else(PICO_SL18H)
-	message(FATAL "No library choice specified for StPicoDst - either BUILD_SL18H or SL18B")
+	message(FATAL_ERROR "No library version specified for StPicoEvent")
 endif(PICO_SL18H)
 
 # use ROOT to generate the dictionary file
