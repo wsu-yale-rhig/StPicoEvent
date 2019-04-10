@@ -3,6 +3,9 @@
 # that crap emacs generates
 *~
 
+# vscode
+.vscode
+
 # build directory
 build
 
