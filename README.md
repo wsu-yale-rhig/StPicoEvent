@@ -12,4 +12,4 @@ By default, builds the shared library, and installs it in ${CMAKE_INSTALL_PREFIX
 
 ## Build options
 
-You can specify which version of the StPicoEvent code to compile using the two CMake flags PICO_SL18H and PICO_SL18B. If none are specified, SL18B is built by default. Header installation can be turned off by setting PICO_INSTALL_HEADERS=Off
+You can specify which version of the StPicoEvent code to compile using a cmake flag. Currently, only supports the most recent version of the SL18h StPicoEvent library, which can be selected with the flag PICO_SL18H (on by default). As other versions of the library are added, the corresponding flags will be added as well. If no library flags are specified, SL18H is built by default. Header installation can be turned off by setting PICO_INSTALL_HEADERS=Off
