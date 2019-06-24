@@ -17,7 +17,7 @@ endif(PICO_LINKDEF)
 
 # install headers
 if (PICO_INSTALL_HEADERS)
-  install(FILES ${PICO_HDRS} DESTINATION include/StPicoDst)
+  install(FILES ${PICO_HDRS} DESTINATION include/StPicoEvent)
 endif (PICO_INSTALL_HEADERS)
 
 # export file lists to parent scope
