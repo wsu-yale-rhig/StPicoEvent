@@ -9,7 +9,8 @@ set(CMAKE_BUILD_TYPE RELEASE)
 
 # options
 option(BUILD_SHARED_LIBS "Build shared libs" ON)
-option(PICO_SL18H "Build the SL18h version of StPicoEvent" ON)
+option(PICO_SL18H "Build the SL18h version of StPicoEvent" OFF)
+option(Pico_SL18C "Build the SL19C version of StPicoEvent" OFF)
 option(PICO_INSTALL_HEADERS "Install StPicoEvent headers" ON)
 
 # compiler & system checks
@@ -33,17 +34,29 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11")
 # dependencies
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_VANILLA_ROOT_")
 
-
 # start the build - define source file and header variables
 set(PICO_SRCS)
 set(PICO_HDRS)
 set(PICO_LINKDEF)
+
+# check option logic
+if (PICO_SL18H AND PICO_SL19C)
+  message(FATAL_ERROR "Cannot select multiple library versions of StPicoEvent")
+endif (PICO_SL18H AND PICO_SL19C)
+
+if (NOT PICO_SL18H AND NOT PICO_SL19C)
+  message(STATUS "Selecting SL19C library version by default")
+  set(PICO_SL19C TRUE)
+endif (NOT PICO_SL18H AND NOT PICO_SL19C)
 
 # finally, add the source tree - dependent on library version
 if (PICO_SL18H)
 	add_subdirectory(SL18h/StPicoEvent)
 	set(PICO_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/SL18h)
 	include_directories(${PICO_INCLUDE})
+elseif (PICO_SL19C)
+ add_subdirectory(SL19c/StPicoEvent)
+ set(PICO_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/SL19c)
 else(PICO_SL18H)
 	message(FATAL_ERROR "No library version specified for StPicoEvent")
 endif(PICO_SL18H)
