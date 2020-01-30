@@ -156,8 +156,13 @@ class StPicoTrack : public TObject {
   Bool_t isMtdTrack() const              { return (mMtdPidTraitsIndex<0) ? false : true; }
   /// Return if track has ETOF hit
   Bool_t isETofTrack() const             { return (mETofPidTraitsIndex<0) ? false : true; }
+  // JETCORR: this function has to be modified to satisfy the new requirements
+  // discussed below.
+
   /// Checks if track matches any BEMC tower
-  Bool_t isBemcMatchedTrack() const      { return (mBEmcMatchedTowerIndex<0) ? false :true; }
+  Bool_t isBemcMatchedTrack() const      { return mBEmcMatchedTowerIndex != 0; }
+
+  // JETCORR: end. 
 
   /// Return if track is primary
   Bool_t isPrimary() const               { return ( pMom().Mag()>0 ); }
@@ -170,11 +175,25 @@ class StPicoTrack : public TObject {
   Int_t mtdPidTraitsIndex() const        { return mMtdPidTraitsIndex; }
   /// Return index to the corresponding ETOF PID trait
   Int_t eTofPidTraitsIndex() const       { return mETofPidTraitsIndex; }
+  // JETCORR: these functions have to be modified so that a negative index 
+  // indicates that the track was found close to the tower, but not in it.
+  // the indexing scheme was chosen so that towers with an exact match
+  // are stored with the softid (1, 4800), towers with an close match are
+  // stored as -softid (-1, -4800), and towers without a match are stored
+  // as 0. Therefore, returning abs(mBEmcMatchedTowerIndex) - 1 will return
+  // the array index of the proper tower for matched tracks, and return -1
+  // for unmatched tracks
+
   /// Return index of the BEMC tower index that was matched with the track.
   /// Indices start from 0 and go up to 4799 in order have the trivial access
   /// to StPicoBTowHit array. 
-  /// If track does not match any BEMC tower the method will return -1
-  Int_t bemcTowerIndex() const           { return mBEmcMatchedTowerIndex; }
+  /// If track does not match any BEMC tower the method will return 4800
+  Int_t bemcTowerIndex() const           { return abs(mBEmcMatchedTowerIndex) - 1; }
+  // If true, the track was found in the material between towers, not in 
+  // a scintillating pad
+  Bool_t isBemcMatchedExact() const      { return mBEmcMatchedTowerIndex > 0;}
+
+  // JETCORR: end.
 
   //
   // Setters
