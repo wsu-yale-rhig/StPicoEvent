@@ -84,6 +84,9 @@ install(TARGETS StPicoEvent EXPORT StPicoEvent DESTINATION lib)
 install(EXPORT StPicoEvent NAMESPACE pico_ DESTINATION lib/StPicoEvent)
 link_directories(${CMAKE_INSTALL_PREFIX}/lib)
 
+# install PCM file
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libStPicoEvent_dict_rdict.pcm DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libStPicoEvent_dict.rootmap DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 set (PICO_LIBRARIES StPicoEvent)
 
 # add an uninstall option, since cmake does not provide one by default
