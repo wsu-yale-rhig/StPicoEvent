@@ -64,6 +64,12 @@ class StPicoMcTrack : public TObject {
   TVector3 p() const                  { return TVector3(mPx, mPy, mPz); }
   /// Return pT of the track
   Float_t pt() const                  { return p().Perp(); }
+  /// Return the px of the particle
+  Float_t px() const                  { return mPx; }
+  /// Return the px of the particle
+  Float_t py() const                  { return mPy; }
+  /// Return the px of the particle
+  Float_t pz() const                  { return mPz; }
   /// Return track total momentum
   Float_t ptot() const                { return p().Mag(); }
   /// Return pseudorapidity of the track
