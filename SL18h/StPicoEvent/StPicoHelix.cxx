@@ -3,6 +3,7 @@
 //
 
 // C++ headers
+#include <iostream>
 #if !defined(ST_NO_NUMERIC_LIMITS)
 #    include <limits>
 #    if !defined(ST_NO_NAMESPACES)
